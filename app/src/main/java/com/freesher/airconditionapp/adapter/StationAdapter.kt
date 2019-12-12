@@ -5,16 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.freesher.airconditionapp.R
+import com.freesher.airconditionapp.StationsFragmentDirections
 import com.freesher.airconditionapp.model.Station
-import kotlinx.android.synthetic.main.station_item.view.*
+import kotlinx.android.synthetic.main.list_item.view.*
 
 class StationAdapter() :
     RecyclerView.Adapter<StationAdapter.StationViewHolder>() {
     private val listOfStations: MutableList<Station> = mutableListOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StationViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.station_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         val viewHolder = StationViewHolder(view)
         Log.e("My",listOfStations.size.toString())
         return viewHolder
@@ -26,6 +28,12 @@ class StationAdapter() :
 
     override fun onBindViewHolder(holder: StationViewHolder, position: Int){
         holder.titleTextView.text = listOfStations[position].name
+        holder.itemView.setOnClickListener {
+            val action = StationsFragmentDirections.actionStationsFragmentToSensorsFragment2()
+            action.stationId = listOfStations[position].id
+
+            Navigation.findNavController(it).navigate(action)
+        }
     }
     fun setStations(stationsList:List<Station>){
         listOfStations.clear()

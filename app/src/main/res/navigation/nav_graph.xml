@@ -7,17 +7,44 @@
 
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.freesher.airconditionapp.DetailsFragment"
+        android:name="com.freesher.airconditionapp.MeasuresFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_measures" >
+        <argument
+            android:name="sensorId"
+            app:argType="integer" />
+        <argument
+            android:name="sensorName"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/stationsFragment"
         android:name="com.freesher.airconditionapp.StationsFragment"
         android:label="fragment_stations"
-        tools:layout="@layout/fragment_stations" />
+        tools:layout="@layout/fragment_stations" >
+        <action
+            android:id="@+id/action_stationsFragment_to_sensorsFragment2"
+            app:destination="@id/sensorsFragment" >
+            <argument android:defaultValue="0"
+                android:name="stationId" />
+        </action>
+    </fragment>
     <fragment
-        android:id="@+id/sensorsFragment2"
+        android:id="@+id/sensorsFragment"
         android:name="com.freesher.airconditionapp.SensorsFragment"
         android:label="fragment_sensors"
-        tools:layout="@layout/fragment_sensors" />
+        tools:layout="@layout/fragment_sensors" >
+        <argument
+            android:name="stationId"
+            app:argType="integer"
+            android:defaultValue="1" />
+        <action
+            android:id="@+id/action_sensorsFragment_to_measuresFragment"
+            app:destination="@id/detailsFragment" >
+            <argument android:defaultValue="0"
+                android:name="sensorId" />
+            <argument android:defaultValue='""'
+                android:name="sensorName" />
+        </action>
+    </fragment>
 </navigation>

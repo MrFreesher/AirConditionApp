@@ -23,12 +23,13 @@ import retrofit2.Response
 class StationsFragment : Fragment(R.layout.fragment_stations) {
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var stationAdapter:StationAdapter
-    var listOfStations = mutableListOf<Station>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.title="Stations"
         layoutManager = LinearLayoutManager(context)
         stationAdapter = StationAdapter()
-        Log.e("My",listOfStations.size.toString())
+
         stationRecyclerView.layoutManager = layoutManager
         stationRecyclerView.adapter = stationAdapter
 

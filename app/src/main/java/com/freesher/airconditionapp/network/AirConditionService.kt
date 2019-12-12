@@ -10,8 +10,8 @@ import retrofit2.http.Path
 interface AirConditionService {
     @GET("station/findAll")
     fun getAllStations(): Call<List<Station>>
-    @GET("sensors/{stationId}")
+    @GET("station/sensors/{stationId}")
     fun getSensors(@Path("stationId") stationId:Int):Call<List<Sensor>>
-    @GET("getData/{sensorId}")
-    fun getMeasures(@Path("sensorId") sensorId:Int):Call<List<Measure>>
+    @GET("data/getData/{sensorId}")
+    fun getMeasures(@Path("sensorId") sensorId:Int):Call<Measure>
 }

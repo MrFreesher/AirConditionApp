@@ -12,8 +12,7 @@
         android:id="@+id/stationTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        style="@style/myTextStyle"
         tools:text="Test" />
 </LinearLayout>
 
