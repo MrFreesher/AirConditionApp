@@ -1,13 +1,14 @@
-package com.freesher.airconditionapp
+package com.freesher.airconditionapp.ui.Measures
 
 
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.freesher.airconditionapp.adapter.MeasureAdapter
+import com.freesher.airconditionapp.R
 import com.freesher.airconditionapp.model.Measure
 import com.freesher.airconditionapp.network.AirConditionApi
 import kotlinx.android.synthetic.main.fragment_measures.*
@@ -28,14 +29,14 @@ class MeasuresFragment : Fragment(R.layout.fragment_measures) {
         val sensorName = args.sensorName
         activity?.title = sensorName
         layoutManager = LinearLayoutManager(context)
-        measureAdapter = MeasureAdapter()
+        measureAdapter =
+            MeasureAdapter()
         measuresRecyclerView.layoutManager = layoutManager
         measuresRecyclerView.adapter = measureAdapter
         AirConditionApi.retrofitService.getMeasures(sensorId).enqueue(object:
             Callback<Measure> {
             override fun onFailure(call: Call<Measure>, t: Throwable) {
-                Log.e("My",t.localizedMessage)
-                Log.v("dd",sensorId.toString())
+               Toast.makeText(context,t.localizedMessage,Toast.LENGTH_SHORT).show()
                 measuresProgressBar.visibility = View.GONE
             }
 
@@ -45,7 +46,7 @@ class MeasuresFragment : Fragment(R.layout.fragment_measures) {
                     measuresProgressBar.visibility = View.GONE
                     measureAdapter.setMeasures(measure)
 
-                    Log.v("xx",sensorId.toString())
+
                 }
             }
 

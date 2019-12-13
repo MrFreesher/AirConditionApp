@@ -1,4 +1,4 @@
-package com.freesher.airconditionapp.adapter
+package com.freesher.airconditionapp.ui.Sensors
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.freesher.airconditionapp.R
-import com.freesher.airconditionapp.SensorsFragmentDirections
+
 import com.freesher.airconditionapp.model.Sensor
 import kotlinx.android.synthetic.main.list_item.view.*
 
@@ -17,7 +17,10 @@ class SensorAdapter() :
     private val listOfSensors: MutableList<Sensor> = mutableListOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SensorViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
-        val viewHolder = SensorViewHolder(view)
+        val viewHolder =
+            SensorViewHolder(
+                view
+            )
         Log.e("My",listOfSensors.size.toString())
         return viewHolder
     }

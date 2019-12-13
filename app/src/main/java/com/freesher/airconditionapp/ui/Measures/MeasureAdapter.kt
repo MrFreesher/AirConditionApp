@@ -1,4 +1,4 @@
-package com.freesher.airconditionapp.adapter
+package com.freesher.airconditionapp.ui.Measures
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,7 +16,10 @@ class MeasureAdapter() :
     private val listOfMeasures: MutableList<Values> = mutableListOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MeasureViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.measure_item, parent, false)
-        val viewHolder = MeasureViewHolder(view)
+        val viewHolder =
+            MeasureViewHolder(
+                view
+            )
         Log.e("My",listOfMeasures.size.toString())
         return viewHolder
     }
