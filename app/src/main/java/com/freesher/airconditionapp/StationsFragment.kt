@@ -23,7 +23,7 @@ import retrofit2.Response
 class StationsFragment : Fragment(R.layout.fragment_stations) {
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var stationAdapter:StationAdapter
-
+    private lateinit var listOfStations:List<Station>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.title="Stations"
@@ -40,13 +40,22 @@ class StationsFragment : Fragment(R.layout.fragment_stations) {
 
             override fun onResponse(call: Call<List<Station>>, response: Response<List<Station>>) {
                 if (response.body() != null) {
-                    stationAdapter.setStations(response.body()!!)
+                    listOfStations = response.body()!!
+                    stationAdapter.setStations(listOfStations)
 
                 }
             }
 
         })
-
+        searchBtn.setOnClickListener {
+            val searchText = searchTextView.text.toString()
+            searchStation(searchText)
+        }
+    }
+    fun searchStation(searchText:String){
+        val regexExpression = searchText.toRegex()
+        val filteredList = listOfStations.filter { regexExpression.containsMatchIn(it.name) }
+        stationAdapter.setStations(filteredList)
     }
 
 
